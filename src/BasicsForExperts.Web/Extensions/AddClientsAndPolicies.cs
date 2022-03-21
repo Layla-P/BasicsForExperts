@@ -10,6 +10,8 @@ namespace BasicsForExperts.Web.Extensions
         //https://github.com/App-vNext/Polly
         public static IServiceCollection AddClientsAndPolicies(this IServiceCollection services)
         {
+            // Instead of just using services.AddHttpClient()
+            // We can also create a strongly typed HttpClient, such as this one
             services.AddHttpClient<WaffleIngredientService>()
                 .AddPolicyHandler(GetRetryPolicy())
                 .AddPolicyHandler(GetCircuitBreakerPolicy())
