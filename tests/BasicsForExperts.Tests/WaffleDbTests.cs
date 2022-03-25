@@ -8,7 +8,7 @@ namespace BasicsForExperts.Tests
 
     //https://docs.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-6.0
     [TestFixture]
-    public class Tests
+    public class WaffleDbTests
     {
         private WaffleDbContext _context;
         [SetUp]

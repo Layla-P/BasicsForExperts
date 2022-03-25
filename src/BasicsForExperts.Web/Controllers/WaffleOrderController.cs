@@ -8,17 +8,24 @@ namespace BasicsForExperts.Web.Controllers;
 [Route("api/[controller]")]
 public class WaffleOrderController : ControllerBase
 {
-    private readonly IWaffleCreationService _waffleCreationService;
-    private readonly ILogger<WaffleOrderController> _logger;
-
-    public WaffleOrderController(ILogger<WaffleOrderController> logger, IEnumerable<IWaffleCreationService> waffleCreationServiceCollection)
+    private readonly WaffleCreationService _waffleCreationService;
+    //private readonly IWaffleCreationService _waffleCreationService;
+    public WaffleOrderController(WaffleCreationService waffleCreationService)
     {
-        _waffleCreationService = waffleCreationServiceCollection
-            .FirstOrDefault(x=> x.GetType()==typeof(WaffleCreationService)) ?? throw new ArgumentNullException("WaffleCreationService"); ;
+        _waffleCreationService = waffleCreationService ?? throw new ArgumentNullException(nameof(waffleCreationService); ;
 
-        _logger = logger;
-            
     }
+    //public WaffleOrderController(IWaffleCreationService waffleCreationService)
+    //{
+    //    _waffleCreationService = waffleCreationService ?? throw new ArgumentNullException(nameof(waffleCreationService)); ;
+
+    //}
+    //public WaffleOrderController(IEnumerable<IWaffleCreationService> waffleCreationServiceCollection)
+    //{
+    //    _waffleCreationService = waffleCreationServiceCollection
+    //        .FirstOrDefault(x=> x.GetType()==typeof(WaffleCreationService)) ?? throw new ArgumentNullException("WaffleCreationService"); ;
+           
+    //}
 
     [HttpGet]
     [Route("Options")]
@@ -33,7 +40,7 @@ public class WaffleOrderController : ControllerBase
     [Route("Options")]
     public void Post([FromBody] WaffleOrder waffleOrder)
     {
-        
+        var toppings = waffleOrder.Toppings;
         //do stuff with the waffle order
     }
 }

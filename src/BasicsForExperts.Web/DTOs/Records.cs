@@ -13,7 +13,7 @@ namespace BasicsForExperts.Web.DTOs
         public string Base { get; init; }
 
         [JsonPropertyName("toppings")]
-        public List<ToppingDto> Ingredients { get; init; }
+        public List<ToppingDto> Toppings { get; init; }
     }
 
 }
