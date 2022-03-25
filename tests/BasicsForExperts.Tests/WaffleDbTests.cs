@@ -1,5 +1,7 @@
 using BasicsForExperts.Web.Data;
+using BasicsForExperts.Web.Services;
 using Microsoft.EntityFrameworkCore;
+using Moq;
 using NUnit.Framework;
 using System.Threading.Tasks;
 
@@ -8,24 +10,25 @@ namespace BasicsForExperts.Tests
 
     //https://docs.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-6.0
     [TestFixture]
-    public class WaffleDbTests
+    public class WaffleCreationServiceTests
     {
-        private WaffleDbContext _context;
+        private Mock<WaffleIngredientService> _mockedIngredientService;
+        private Mock<IWaffleCreationService> _mockedWaffleCreationService;
+        private WaffleCreationService _sut;
+        private IWaffleCreationService _isut;
         [SetUp]
         public void Setup()
         {
-            var builder = new DbContextOptionsBuilder<WaffleDbContext>();
-            builder.UseInMemoryDatabase("WaffleDBMemory");
-            var options = builder.Options;
-            _context = new WaffleDbContext(options);
-            _context.Database.EnsureCreated();
-
+            _mockedIngredientService = new Mock<WaffleIngredientService>(MockBehavior.Strict);
+            _mockedWaffleCreationService = new Mock<IWaffleCreationService>(MockBehavior.Strict);
+            _sut = new WaffleCreationService(_mockedIngredientService.Object);
+            _isut = new WaffleCreationService(_mockedIngredientService.Object);
         }
 
         [Test]
         public async Task Test1()
         {
-            var users = await _context.Users.ToListAsync();
+            
             Assert.Pass();
             
         }
