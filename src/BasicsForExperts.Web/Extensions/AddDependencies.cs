@@ -9,10 +9,6 @@ namespace BasicsForExperts.Web.Extensions
             services.AddHttpClient();
             services.AddSingleton<WaffleIngredientService>();
             services.AddSingleton<IWaffleCreationService, WaffleCreationService>();
-
-            // Add mutliple implementations
-            services.AddSingleton<IWaffleCreationService, AnotherWaffleCreationService>();
-
             return services;
         }
     }
