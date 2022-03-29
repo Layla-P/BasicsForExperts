@@ -24,6 +24,7 @@ builder.Services.AddHttpClient();
 builder.Services.AddSingleton<WaffleIngredientService>();
 // We can add an implementation of an interface like this.
 builder.Services.AddSingleton<IWaffleCreationService, WaffleCreationService>();
+
 builder.Services.AddDatabases(Configuration);
 
 
