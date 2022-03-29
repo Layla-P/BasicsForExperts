@@ -11,6 +11,7 @@ namespace BasicsForExperts.Web.Extensions
         public static IServiceCollection AddClientsAndPolicies(this IServiceCollection services)
         {
             // Instead of just using services.AddHttpClient()
+            services.AddHttpClient();
             // We can also create a strongly typed HttpClient, such as this one
             services.AddHttpClient<WaffleIngredientService>()
                 .AddPolicyHandler(GetRetryPolicy())
