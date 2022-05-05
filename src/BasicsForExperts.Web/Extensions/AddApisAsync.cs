@@ -10,7 +10,7 @@ public static partial class WebApplicationExtensions
         //https://github.com/csharpfritz/InstantAPIs
         using (var scope = app.Services.CreateScope())
         {
-            var waffleCreationService = scope.ServiceProvider.GetRequiredService<WaffleCreationService>();
+            var waffleCreationService = scope.ServiceProvider.GetRequiredService<IWaffleCreationService>();
             var response = await waffleCreationService.StartWaffleCreation();
 
             app.MapGet("/GetWaffleToppings", () => new { toppings = response.toppings, bases = response.bases });

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BasicsForExperts.Web.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/layla")]
 public class WaffleOrderController : ControllerBase
 {
     //private readonly WaffleCreationService _waffleCreationService;
@@ -26,12 +26,12 @@ public class WaffleOrderController : ControllerBase
     //public WaffleOrderController(IEnumerable<IWaffleCreationService> waffleCreationServiceCollection)
     //{
     //    _waffleCreationService = waffleCreationServiceCollection
-    //        .FirstOrDefault(x=> x.GetType()==typeof(WaffleCreationService)) ?? throw new ArgumentNullException("WaffleCreationService"); ;
+    //        .First(x => x.GetType() == typeof(WaffleCreationService)) ?? throw new ArgumentNullException("WaffleCreationService"); ;
 
     //}
 
     [HttpGet]
-    [Route("Options")]
+    //[Route("Options")]
     public async Task<JsonResult> Get()
     {
         var response = await _waffleCreationService.StartWaffleCreation();
@@ -40,7 +40,7 @@ public class WaffleOrderController : ControllerBase
     }
 
     [HttpPost]
-    [Route("Options")]
+    //[Route("Options")]
     public void Post([FromBody] WaffleOrder waffleOrder)
     {
         var toppings = waffleOrder.Toppings;

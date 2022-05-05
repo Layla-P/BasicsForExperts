@@ -18,6 +18,13 @@ namespace BasicsForExperts.Web.Extensions
                 .AddPolicyHandler(GetCircuitBreakerPolicy())
                 .AddPolicyHandler(GetFallbackPolicy());
 
+            //services.AddHttpClient("myClient",
+            //    client =>
+            //    {
+            //        client.BaseAddress = new Uri("");
+            //        client.DefaultRequestHeaders.Add("", "");
+            //    });
+
             return services;
         }
 
@@ -34,7 +41,7 @@ namespace BasicsForExperts.Web.Extensions
             return HttpPolicyExtensions
                 .HandleTransientHttpError()
                 .CircuitBreakerAsync(
-                handledEventsAllowedBeforeBreaking:5,
+                handledEventsAllowedBeforeBreaking: 5,
                 durationOfBreak: TimeSpan.FromSeconds(30));
         }
 
