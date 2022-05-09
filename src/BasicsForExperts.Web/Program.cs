@@ -58,14 +58,15 @@ app.MapControllers();
 
 
 // Minimal APIs architecture allows us to add lightweight api endpoints directly to the WebApplication without the need for a controller
-using (var scope = app.Services.CreateScope())
-{
-    var waffleCreationService = scope.ServiceProvider.GetRequiredService<IWaffleCreationService>();
-    var response = await waffleCreationService.StartWaffleCreation();
 
-    app.MapGet("/GetWaffleToppings", () => new { ingredients = response.toppings, bases = response.bases });
+   
 
-}
+app.MapGet("/GetWaffleToppings", (IWaffleCreationService waffleCreationService) =>
+           {
+              var response = await waffleCreationService.StartWaffleCreation();
+              return new { ingredients = response.toppings, bases = response.bases });
+           }
+
 
 // If we have a lot of apis, the program file could get messy, so just like everything else, we can pull it out into an extension method
 //await app.AddApisAsync();
