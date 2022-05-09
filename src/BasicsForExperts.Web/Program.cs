@@ -62,10 +62,11 @@ app.MapControllers();
    
 
 app.MapGet("/GetWaffleToppings", (IWaffleCreationService waffleCreationService) =>
-           {
-              var response = await waffleCreationService.StartWaffleCreation();
-              return new { ingredients = response.toppings, bases = response.bases });
-           }
+             {
+                var response = await waffleCreationService.StartWaffleCreation();
+                return new { ingredients = response.toppings, bases = response.bases });
+             }
+          );
 
 
 // If we have a lot of apis, the program file could get messy, so just like everything else, we can pull it out into an extension method
